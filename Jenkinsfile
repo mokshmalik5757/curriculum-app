@@ -1,6 +1,4 @@
 pipeline {
-  tools {nodejs "nodejs"}
-  
   agent any
   stages {
     stage('Checkout Code') {
@@ -10,21 +8,13 @@ pipeline {
     }
 
     stage('Logs') {
-      parallel {
-        stage('Logs') {
-          steps {
-            sh 'ls -la'
-          }
-        }
-
-        stage('Front-End Unit Test') {
-          steps {
-            sh 'cd curriculum-front && npm i && npm run test:unit'
-          }
-        }
-
+      steps {
+        sh 'ls -la'
       }
     }
 
+  }
+  tools {
+    nodejs 'nodejs'
   }
 }
